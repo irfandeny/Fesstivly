@@ -1,0 +1,1902 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Festivly - Platform event organizer terpercaya untuk mewujudkan acara impian Anda dengan kualitas terbaik dan harga terjangkau.">
+    <meta name="keywords" content="event organizer, acara, festivly, event planner, pernikahan, ulang tahun, konser">
+    <meta name="theme-color" content="#0e0020">
+    <title>Festivly - Event Organizer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #0e0020;
+            color: #fff;
+            scroll-behavior: smooth;
+            overflow-x: hidden; /* Prevent horizontal scroll on mobile */
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: #0e0020;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo img {
+            max-height: 80px;
+            transition: transform 0.3s ease;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        nav a {
+            color: #bb4040;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 0;
+            position: relative;
+            min-width: 44px; /* For better touch target size */
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        nav a:hover {
+            color: #ff00cc;
+        }
+
+        nav a.active {
+            color: #ff00cc;
+            font-weight: bold;
+        }
+
+        /* nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #ff00cc;
+            transform: scaleX(0.7);
+            transition: transform 0.3s ease;
+        } */
+
+        nav a:last-child {
+            background: #ff008c;
+            padding: 8px 16px;
+            border-radius: 5px;
+            color: white;
+            margin-left: 15px;
+        }
+
+        nav a:last-child:hover {
+            background: #ff40a5;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(255, 0, 140, 0.3);
+        }
+
+        /* Hamburger Menu Icon */
+        .hamburger-menu {
+            display: none; /* Hidden by default, shown on mobile/tablet */
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: #fff;
+            cursor: pointer;
+            z-index: 1001; /* Ensure it's above other content */
+            padding: 10px; /* Increase clickable area */
+        }
+
+        /* Navigation Overlay */
+        .nav-overlay {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            z-index: 998; /* Below hamburger, above content */
+        }
+
+        .nav-overlay.active {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 120px 20px 80px;
+            background:
+                url('assets/images/hero-bg.jpg'),
+                radial-gradient(circle at top, rgba(26, 0, 82, 0.85), rgba(14, 0, 32, 0.9)),
+                url('assets/images/hexa-bg.png');
+            background-size: cover, cover, cover;
+            background-position: center top, center, center;
+            background-repeat: no-repeat, no-repeat, no-repeat;
+            position: relative;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            background-color: rgba(14, 0, 32, 0.5);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-in-out;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .btn-cta {
+            background: #ff008c;
+            color: #fff;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-cta:hover {
+            transform: scale(1.05);
+        }
+
+        .highlight {
+            margin: 40px auto;
+            max-width: 600px;
+        }
+
+        .highlight p {
+            background: linear-gradient(90deg, #ebfdff, #ff00dc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+
+        /* Section Intro (Generic) */
+        .section-intro {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .section-intro h2 span {
+            color: #ff00c8;
+        }
+
+        .intro-box {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .intro-box div {
+            background: #1f0144;
+            padding: 20px;
+            border-radius: 10px;
+            flex: 1 1 150px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .intro-box div:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Kategori Section */
+        .kategori {
+            padding: 60px 20px;
+            background: #140033;
+        }
+
+        .kategori h2 {
+            color: #ff00b8;
+            font-size: 28px;
+            text-align: center;
+        }
+
+        .grid-kategori {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+
+        .kategori-item {
+            background: #1f0144;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            color: #fff;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .kategori-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .kategori-item img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        /* Festivly Section (About Us) */
+        .festivly-section {
+            padding: 80px 20px;
+            background: linear-gradient(to bottom, #0e0020, #150035);
+            text-align: center;
+        }
+
+        .festivly-heading {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .festivly-heading h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .festivly-heading h2 span {
+            color: #ff00c8;
+        }
+
+        .festivly-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .festivly-image {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+            margin-right: 30px;
+        }
+
+        .festivly-image img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .festivly-text {
+            flex: 1;
+            min-width: 300px;
+            text-align: left;
+            padding: 20px;
+        }
+
+        .festivly-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .festivly-text p {
+            color: #d4d4d4;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .counter-stats {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+            gap: 60px;
+            flex-wrap: wrap; /* Allow wrapping on small screens */
+        }
+
+        .counter-item {
+            text-align: center;
+            flex: 1 1 auto; /* Allow items to shrink/grow */
+            min-width: 100px; /* Minimum width for items */
+        }
+
+        .counter-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ff00c8;
+            margin-bottom: 5px;
+        }
+
+        .counter-label {
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 0, 140, 0.8);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .play-button:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+            background: rgba(255, 0, 140, 1);
+        }
+
+        .play-button::after {
+            content: "";
+            display: inline-block;
+            border-style: solid;
+            border-width: 15px 0 15px 25px;
+            border-color: transparent transparent transparent white;
+            margin-left: 5px;
+        }
+
+        /* Upcoming Events */
+        .upcoming-events {
+            padding: 80px 20px;
+            background: #0b001a;
+            color: white;
+            text-align: center;
+        }
+
+        .upcoming-events h2 {
+            margin-bottom: 15px;
+            font-size: 2.5rem;
+            background: linear-gradient(90deg, #ff00cc, #3333ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .upcoming-events .subtitle {
+            font-size: 1.1rem;
+            color: #d4d4d4;
+            margin-bottom: 50px;
+        }
+
+        .events-container {
+            display: flex;
+            flex-direction: column;
+            max-width: 900px;
+            margin: 0 auto;
+            gap: 20px;
+        }
+
+        .event-card {
+            display: flex;
+            background: rgba(31, 1, 68, 0.7);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 0, 140, 0.2);
+        }
+
+        .event-date {
+            background: #ff008c;
+            color: white;
+            padding: 15px;
+            min-width: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        .event-date .day {
+            font-size: 1.8rem;
+            line-height: 1;
+        }
+
+        .event-date .month {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .event-info {
+            padding: 15px;
+            display: flex;
+            flex: 1;
+            text-align: left;
+        }
+
+        .event-image {
+            width: 120px;
+            height: 80px;
+            object-fit: cover;
+            margin-right: 15px;
+            border-radius: 6px;
+        }
+
+        .event-details {
+            flex: 1;
+        }
+
+        .event-title {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: white;
+        }
+
+        .event-location {
+            color: #bbb;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .event-rating {
+            color: gold;
+            font-size: 0.9rem;
+        }
+
+        /* Browse Events */
+        .browse-events {
+            padding: 80px 20px;
+            background: linear-gradient(to top, #0e0020, #150035);
+            text-align: center;
+        }
+
+        .browse-events h2 {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: white;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .browse-card {
+            background: rgba(31, 1, 68, 0.7);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+            text-align: left;
+        }
+
+        .browse-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .browse-img-container {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .browse-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .browse-card-content {
+            padding: 20px;
+        }
+
+        .browse-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .browse-details {
+            color: #bbb;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .browse-cta {
+            background: #ff008c;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.3s ease, background 0.3s ease;
+            width: 100%;
+        }
+
+        .browse-cta:hover {
+            background: #ff40a5;
+            transform: scale(1.03);
+        }
+
+        .load-more-btn {
+            background: transparent;
+            color: white;
+            border: 2px solid #ff008c;
+            padding: 10px 30px;
+            border-radius: 30px;
+            margin-top: 40px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .load-more-btn:hover {
+            background: #ff008c;
+            color: white;
+        }
+
+        /* Testimonial Section */
+        .testimonial-section {
+            padding: 80px 20px;
+            background: rgba(31, 1, 68, 0.05);
+            text-align: center;
+            position: relative;
+            color: #fff;
+            border-radius: 20px;
+            margin: 50px auto;
+            max-width: 1200px;
+        }
+
+        .testimonial-heading {
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .testimonial-heading h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .testimonial-heading h2 span {
+            color: #ff00c8;
+        }
+
+        .testimonial-heading h3 {
+            color: #d4d4d4;
+            font-size: 1.2rem;
+            margin-top: 0;
+        }
+
+        .testimonial-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: rgba(31, 1, 68, 0.7);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            flex: 1;
+            min-width: 250px;
+            max-width: 290px;
+            text-align: left;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 0, 140, 0.2);
+        }
+
+        .testimonial-date {
+            background: linear-gradient(135deg, #ff00cc, #3333ff);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-date .day {
+            font-size: 18px;
+            line-height: 1;
+        }
+
+        .testimonial-date .month {
+            font-size: 12px;
+        }
+
+        .testimonial-info {
+            flex: 1;
+        }
+
+        .testimonial-content {
+            margin: 15px 0;
+            color: #e0e0e0;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .testimonial-user {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .testimonial-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+            border: 2px solid #ff008c;
+        }
+
+        .testimonial-user-info {
+            flex: 1;
+        }
+
+        .testimonial-name {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 3px;
+            color: #fff;
+        }
+
+        .testimonial-title {
+            color: #aaa;
+            font-size: 0.8rem;
+        }
+
+        .testimonial-rating {
+            color: gold;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        /* Form Testimonial Styles */
+        .add-testimonial {
+            margin-top: 60px;
+            background: rgba(31, 1, 68, 0.5);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: left;
+            max-width: 800px; /* Limit form width */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .add-testimonial h3 {
+            color: #fff;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .testimonial-form {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group.rating-group {
+            grid-column: span 2;
+        }
+
+        .form-group:nth-child(3) { /* Message textarea */
+            grid-column: span 2;
+        }
+
+        .testimonial-form label {
+            display: block;
+            margin-bottom: 8px;
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .testimonial-form input,
+        .testimonial-form textarea {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-form input:focus,
+        .testimonial-form textarea:focus {
+            outline: none;
+            border-color: #ff008c;
+            box-shadow: 0 0 0 2px rgba(255, 0, 140, 0.3);
+        }
+
+        .testimonial-form input::placeholder,
+        .testimonial-form textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .star-rating {
+            display: flex;
+            flex-direction: row-reverse; /* For CSS star rating */
+            justify-content: flex-end;
+        }
+
+        .star-rating input {
+            display: none; /* Hide actual radio buttons */
+        }
+
+        .star-rating label {
+            cursor: pointer;
+            width: auto;
+            color: #ccc; /* Default star color */
+            font-size: 2rem;
+            padding: 0 2px;
+            transition: all 0.2s ease;
+        }
+
+        .star-rating label:hover,
+        .star-rating label:hover ~ label,
+        .star-rating input:checked ~ label {
+            color: gold; /* Filled star color */
+        }
+
+        .testimonial-submit {
+            background: #ff008c;
+            color: #fff;
+            border: none;
+            padding: 14px 25px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            grid-column: span 2; /* Spans across two columns in the grid */
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .testimonial-submit:hover {
+            background: #ff40a5;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 0, 140, 0.4);
+        }
+
+        /* Testimonial navigation dots (if you have multiple cards/rows) */
+        .testimonial-navigation {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 10px;
+        }
+        .testimonial-nav-btn {
+            background: none;
+            border: none;
+            color: #777;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .testimonial-nav-btn.active {
+            color: #ff00c8;
+        }
+
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: #ff008c;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: #ff40a5;
+            transform: translateY(-5px);
+        }
+
+        /* Footer Styles */
+        .footer-section {
+            background: linear-gradient(to bottom, #0b001a, #000000);
+            color: #fff;
+            padding: 70px 0 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff00cc, #3333ff);
+        }
+
+        .footer-top {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 50px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+            padding: 0 15px;
+        }
+
+        .footer-logo {
+            margin-bottom: 20px;
+        }
+
+        .footer-logo img {
+            max-height: 60px;
+        }
+
+        .footer-desc {
+            color: #bbb;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: #ff008c;
+            transform: translateY(-5px);
+        }
+
+        .footer-column h4 {
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background: #ff008c;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: #ff008c;
+            transform: translateX(5px);
+        }
+
+        .contact-info {
+            margin-bottom: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .contact-item i {
+            color: #ff008c;
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+
+        .contact-item span {
+            color: #bbb;
+            line-height: 1.5;
+        }
+
+        .newsletter h5 {
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .newsletter-form {
+            display: flex;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 4px 0 0 4px;
+            color: #fff;
+            outline: none;
+        }
+
+        .newsletter-form button {
+            background: #ff008c;
+            color: white;
+            border: none;
+            padding: 0 15px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background: #ff40a5;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-bottom p {
+            color: #777;
+            margin: 10px 0;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-bottom-links a {
+            color: #777;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-bottom-links a:hover {
+            color: #ff008c;
+        }
+
+        /* Responsive design for tablets and smaller desktops (992px max) */
+        @media screen and (max-width: 992px) {
+            header {
+                padding: 15px 20px;
+            }
+
+            /* Hide regular nav on tablet/mobile */
+            nav {
+                display: none;
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                right: -250px; /* Lebar menu 250px, mulai off-screen */
+                width: 250px; /* Lebar menu sidebar */
+                height: 100%;
+                background: #1a0035; /* Darker background for sidebar */
+                padding: 60px 20px 20px;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+                transition: right 0.3s ease-in-out;
+                z-index: 999; /* Ensure it's above content but below hamburger */
+                align-items: flex-start;
+            }
+
+            nav.active {
+                right: 0; /* Slide in */
+                display: flex; /* Show when active */
+            }
+
+            nav a {
+                margin: 15px 0;
+                width: 100%; /* Full width links */
+                justify-content: flex-start;
+                padding: 10px 0;
+                min-height: auto; /* Reset min-height */
+            }
+
+            nav a:last-child {
+                margin-left: 0;
+                margin-top: 20px;
+                width: auto; /* Keep button width natural */
+            }
+
+            /* Show hamburger menu */
+            .hamburger-menu {
+                display: block;
+            }
+
+            .festivly-content {
+                flex-direction: column;
+            }
+
+            .festivly-image {
+                margin-right: 0;
+                margin-bottom: 30px;
+            }
+
+            .intro-box div {
+                flex-basis: 45%; /* Adjust for 2 columns */
+            }
+
+            .grid-kategori {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+
+            .footer-column {
+                min-width: 45%; /* Two columns for footer */
+            }
+
+            .testimonial-form {
+                grid-template-columns: 1fr; /* Single column form on tablet */
+            }
+
+            .form-group.rating-group,
+            .form-group:nth-child(3),
+            .testimonial-submit {
+                grid-column: span 1; /* Reset span for single column */
+            }
+            .star-rating {
+                justify-content: flex-start; /* Align stars to left */
+            }
+        }
+
+        /* Responsive design for mobile devices (768px max) */
+        @media screen and (max-width: 768px) {
+            header {
+                flex-direction: row; /* Keep logo and hamburger on one line */
+                justify-content: space-between;
+                padding: 15px;
+            }
+
+            .logo {
+                margin-bottom: 0; /* Remove margin */
+            }
+
+            .hero {
+                padding: 80px 15px 60px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .counter-stats {
+                gap: 20px; /* Reduce gap */
+            }
+
+            .counter-item {
+                flex-basis: 100%; /* Stack counters vertically */
+                max-width: 150px; /* Keep items centered */
+                margin: 0 auto;
+            }
+
+            .event-card {
+                flex-direction: column; /* Stack event info vertically */
+            }
+
+            .event-image {
+                width: 100%;
+                height: 150px;
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+
+            .event-info {
+                flex-direction: column;
+            }
+
+            .testimonial-section {
+                padding: 40px 15px;
+            }
+
+            .testimonial-heading h2 {
+                font-size: 1.8rem;
+            }
+
+            .testimonial-card {
+                padding: 20px 15px;
+                min-width: 100%; /* Full width for cards */
+            }
+
+            .testimonial-user {
+                flex-direction: column;
+                align-items: flex-start; /* Align items to left */
+                margin-bottom: 10px; /* Adjust margin */
+            }
+
+            .testimonial-avatar {
+                margin-right: 0;
+                margin-bottom: 10px; /* Add margin below avatar */
+            }
+
+            .testimonial-title {
+                font-size: 0.8rem;
+            }
+
+            .testimonial-rating {
+                align-self: flex-start; /* Align stars to left */
+                margin-top: 5px;
+            }
+
+            .footer-column {
+                flex: 100%; /* Stack footer columns */
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-bottom-links {
+                justify-content: center;
+                margin-top: 15px;
+            }
+        }
+
+        /* Small mobile devices (480px max) */
+        @media screen and (max-width: 480px) {
+            header {
+                padding: 10px;
+            }
+            .logo img {
+                max-height: 60px;
+            }
+            .hero h1 {
+                font-size: 24px;
+            }
+            .festivly-heading h2, .browse-events h2, .upcoming-events h2 {
+                font-size: 2rem;
+            }
+            .counter-value {
+                font-size: 2rem;
+            }
+            .kategori h2 {
+                font-size: 24px;
+            }
+            .grid-kategori {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            }
+            .browse-events .events-grid {
+                grid-template-columns: 1fr; /* Single column for browse events */
+            }
+            .testimonial-form {
+                padding: 20px; /* Reduce form padding */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/images/logo.jpg" alt="Festivly Logo">
+            </a>
+        </div>
+        <button class="hamburger-menu" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+        <nav id="main-nav">
+            <a href="#hero-section" class="nav-link active">Home</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="event.html" class="nav-link">Event</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+            <a href="login.html" class="nav-link">Login</a>
+        </nav>
+    </header>
+
+    <div class="nav-overlay" id="navOverlay"></div>
+
+    <section class="hero" id="hero-section">
+        <div class="hero-content">
+            <h1>Temukan Vendor Event Terbaik untuk Acara Anda</h1>
+            <button class="btn-cta">Jelajahi Sekarang</button>
+            <div class="highlight">
+                <p>Pernikahan | Seminar | Ulang Tahun | Pameran</p>
+                <p>Festival Musik | Acara Kampus | Family Gathering</p>
+                <p>Talkshow | Peluncuran Produk | Dan Lainnya</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="festivly-section" id="festivly-section-about">
+        <div class="festivly-heading">
+            <h2><span>Meriahkan</span> eventmu dengan Festivly.</h2>
+        </div>
+        <div class="festivly-content">
+            <div class="festivly-image">
+                <img src="assets/images/hero-bg.jpg" alt="Festivly Event">
+                <div class="play-button"></div>
+            </div>
+            <div class="festivly-text">
+                <h3>Pengaruh Festivly dalam Event Organizer</h3>
+                <p>Festivly, event organizer yang hadir untuk menjadikan setiap acara menjadi momen yang efisien, berkesan, dan tak terlupakan. Kami menyediakan layanan lengkap dan profesional untuk berbagai jenis event, dari pernikahan hingga acara korporat. Dengan kreativitas, ketepatan, dan kerja sama kami bersama vendor terpilih, kami memastikan setiap acara Anda berjalan dengan lancar.</p>
+                <div class="counter-stats">
+                    <div class="counter-item">
+                        <div class="counter-value" data-target="500">0+</div>
+                        <div class="counter-label">CLIENT</div>
+                    </div>
+                    <div class="counter-item">
+                        <div class="counter-value" data-target="300">0+</div>
+                        <div class="counter-label">EVENT</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="kategori" id="kategori-section">
+        <h2>Kategori Populer</h2>
+        <div class="grid-kategori">
+            <div class="kategori-item">
+                <img src="assets/images/419d7da8dfab46c3ad9e1ee10835888d.jpg" alt="Tenda">
+                <div>Tenda</div>
+            </div>
+            <div class="kategori-item">
+                <img src="assets/images/home_img/kategori_img/catering category.jpg" alt="Catering">
+                <div>Catering</div>
+            </div>
+            <div class="kategori-item">
+                <img src="assets/images/home_img/kategori_img/fotografi category.jpg" alt="Fotografi">
+                <div>Fotografi</div>
+            </div>
+            <div class="kategori-item">
+                <img src="assets/images/d2f7b2cba5a4417199247bd30e476531.jpg" alt="MC">
+                <div>MC</div>
+            </div>
+            <div class="kategori-item">
+                <img src="assets/images/home_img/kategori_img/musik dan hiburan category.jpg" alt="Musik">
+                <div>Musik/Hiburan</div>
+            </div>
+            <div class="kategori-item">
+                <img src="assets/images/home_img/kategori_img/birthday category.jpg" alt="Birthday">
+                <div>Birthday</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="festivly-section">
+        <div class="festivly-heading">
+            <h2>Kenapa Memilih <span>Festivly?</span></h2>
+        </div>
+        <div class="festivly-content">
+            <div class="festivly-image">
+                <img src="assets/images/festivly-image.jpg" alt="Festivly Image">
+                <div class="play-button"></div>
+            </div>
+            <div class="festivly-text">
+                <h3>Solusi Terbaik untuk Event Anda</h3>
+                <p>Kami menyediakan berbagai vendor terpercaya untuk memenuhi kebutuhan acara Anda. Dengan Festivly, acara Anda akan menjadi lebih mudah dan menyenangkan.</p>
+                <div class="counter-stats">
+                    <div class="counter-item">
+                        <div class="counter-value" data-target="500">0</div>
+                        <div class="counter-label">Acara</div>
+                    </div>
+                    <div class="counter-item">
+                        <div class="counter-value" data-target="300">0</div>
+                        <div class="counter-label">Vendor</div>
+                    </div>
+                    <div class="counter-item">
+                        <div class="counter-value" data-target="1000">0</div>
+                        <div class="counter-label">Pengguna</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="upcoming-events" id="upcoming-events">
+        <h2>Upcoming Events</h2>
+        <p class="subtitle">Jangan lewatkan acara menarik berikutnya!</p>
+        <div class="events-container">
+            <div class="event-card">
+                <div class="event-date">
+                    <div class="day">25</div>
+                    <div class="month">Dec</div>
+                </div>
+                <div class="event-info">
+                    <img src="assets/images/home_img/upcoming events/musik festival.jpg" alt="Event Image" class="event-image">
+                    <div class="event-details">
+                        <div class="event-title">Music Festival 2025</div>
+                        <div class="event-location">Jakarta Convention Center</div>
+                        <div class="event-rating">⭐⭐⭐⭐☆</div>
+                    </div>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-date">
+                    <div class="day">31</div>
+                    <div class="month">Dec</div>
+                </div>
+                <div class="event-info">
+                    <img src="assets/images/home_img/upcoming events/new years.jpg" alt="Event Image" class="event-image">
+                    <div class="event-details">
+                        <div class="event-title">New Year's Eve Celebration</div>
+                        <div class="event-location">Grand Ballroom Kemang</div>
+                        <div class="event-rating">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-date">
+                    <div class="day">15</div>
+                    <div class="month">Jan</div>
+                </div>
+                <div class="event-info">
+                    <img src="assets/images/home_img/upcoming events/wedding_expo.jpg" alt="Event Image" class="event-image">
+                    <div class="event-details">
+                        <div class="event-title">Wedding Expo 2026</div>
+                        <div class="event-location">ICE BSD City</div>
+                        <div class="event-rating">⭐⭐⭐⭐☆</div>
+                    </div>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-date">
+                    <div class="day">22</div>
+                    <div class="month">Jan</div>
+                </div>
+                <div class="event-info">
+                    <img src="assets/images/home_img/upcoming events/businnes summit.jpg" alt="Event Image" class="event-image">
+                    <div class="event-details">
+                        <div class="event-title">Business Summit 2026</div>
+                        <div class="event-location">The Ritz-Carlton Jakarta</div>
+                        <div class="event-rating">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="browse-events">
+        <h2>Browse Events</h2>
+        <div class="events-grid">
+            <div class="browse-card">
+                <div class="browse-img-container">
+                    <img src="assets/images/home_img/browser_events/wedding_ceremony.jpg" alt="Event Image" class="browse-img">
+                </div>
+                <div class="browse-card-content">
+                    <div class="browse-title">Wedding Ceremony</div>
+                    <div class="browse-details">Layanan paket lengkap untuk pernikahan impian Anda</div>
+                    <button class="browse-cta">Lihat Detail</button>
+                </div>
+            </div>
+            <div class="browse-card">
+                <div class="browse-img-container">
+                    <img src="assets/images/5f62bec7563d4ff0ba99971735181e67.jpg" alt="Event Image" class="browse-img">
+                </div>
+                <div class="browse-card-content">
+                    <div class="browse-title">Corporate Event</div>
+                    <div class="browse-details">Pengelolaan acara korporasi profesional</div>
+                    <button class="browse-cta">Lihat Detail</button>
+                </div>
+            </div>
+            <div class="browse-card">
+                <div class="browse-img-container">
+                    <img src="assets/images/419d7da8dfab46c3ad9e1ee10835888d.jpg" alt="Event Image" class="browse-img">
+                </div>
+                <div class="browse-card-content">
+                    <div class="browse-title">Birthday Party</div>
+                    <div class="browse-details">Buat perayaan ulang tahun yang berkesan</div>
+                    <button class="browse-cta">Lihat Detail</button>
+                </div>
+            </div>
+            <div class="browse-card">
+                <div class="browse-img-container">
+                    <img src="assets/images/home_img/browser_events/concert.jpg" alt="Event Image" class="browse-img">
+                </div>
+                <div class="browse-card-content">
+                    <div class="browse-title">Music Concert</div>
+                    <div class="browse-details">Solusi venue dan peralatan untuk konser musik</div>
+                    <button class="browse-cta">Lihat Detail</button>
+                </div>
+            </div>
+            <div class="browse-card">
+                <div class="browse-img-container">
+                    <img src="assets/images/home_img/browser_events/seminar.jpg" alt="Event Image" class="browse-img">
+                </div>
+                <div class="browse-card-content">
+                    <div class="browse-title">Seminar & Workshop</div>
+                    <div class="browse-details">Pengelolaan acara pendidikan dan profesional</div>
+                    <button class="browse-cta">Lihat Detail</button>
+                </div>
+            </div>
+            <div class="browse-card">
+                <div class="browse-img-container">
+                    <img src="assets/images/home_img/browser_events/carnaval.jpg" alt="Event Image" class="browse-img">
+                </div>
+                <div class="browse-card-content">
+                    <div class="browse-title">Festival & Carnival</div>
+                    <div class="browse-details">Organisasi festival dan karnaval berskala besar</div>
+                    <button class="browse-cta">Lihat Detail</button>
+                </div>
+            </div>
+        </div>
+        <button class="load-more-btn">Muat Lebih Banyak</button>
+    </section>
+
+    <section class="testimonial-section">
+      <div class="testimonial-heading">
+        <h2><span>Testimoni</span> pelanggan</h2>
+        <h3>Event & Festival.</h3>
+      </div>
+      <div class="testimonial-container">
+        <div class="testimonial-card">
+          <div class="testimonial-date">
+            <div class="day">08</div>
+            <div class="month">OCT</div>
+          </div>
+          <div class="testimonial-info">
+            <div class="testimonial-user">
+              <img src="assets/images/1d17238d67884f27b44c22d65177ba8f.jpg" alt="User Avatar" class="testimonial-avatar">
+              <div class="testimonial-user-info">
+                <div class="testimonial-name">IMAM</div>
+                <div class="testimonial-title">Customer</div>
+              </div>
+            </div>
+            <div class="testimonial-content">
+              "Terima kasih banyak ke salah memberikan layanan prima organizer terbaik untuk acara kami."
+            </div>
+            <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="testimonial-date">
+            <div class="day">12</div>
+            <div class="month">OCT</div>
+          </div>
+          <div class="testimonial-info">
+            <div class="testimonial-user">
+              <img src="assets/images/3bf05e5bb63a476c87ed47b2629319cc.jpg" alt="User Avatar" class="testimonial-avatar">
+              <div class="testimonial-user-info">
+                <div class="testimonial-name">ADHIM</div>
+                <div class="testimonial-title">Customer</div>
+              </div>
+            </div>
+            <div class="testimonial-content">
+              "Terima kasih banyak ke salah memberikan layanan event organizer terbaik untuk acara kami."
+            </div>
+            <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="testimonial-date">
+            <div class="day">21</div>
+            <div class="month">NOV</div>
+          </div>
+          <div class="testimonial-info">
+            <div class="testimonial-user">
+              <img src="assets/images/d2f7b2cba5a4417199247bd30e476531.jpg" alt="User Avatar" class="testimonial-avatar">
+              <div class="testimonial-user-info">
+                <div class="testimonial-name">MANAJEMEN</div>
+                <div class="testimonial-title">Customer</div>
+              </div>
+            </div>
+            <div class="testimonial-content">
+              "Terima kasih banyak ke salah memberikan layanan event organizer terbaik untuk acara kami."
+            </div>
+            <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="testimonial-date">
+            <div class="day">27</div>
+            <div class="month">DEC</div>
+          </div>
+          <div class="testimonial-info">
+            <div class="testimonial-user">
+              <img src="assets/images/fcf0fcc70b814ad9a6613bacd09e4450.jpg" alt="User Avatar" class="testimonial-avatar">
+              <div class="testimonial-user-info">
+                <div class="testimonial-name">Mahdi</div>
+                <div class="testimonial-title">Customer</div>
+              </div>
+            </div>
+            <div class="testimonial-content">
+              "Terima kasih banyak ke salah memberikan layanan event organizer terbaik untuk acara kami."
+            </div>
+            <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animasi Counter Stats
+            const counterElements = document.querySelectorAll('.counter-value[data-target]');
+
+            const animateCounter = (element, start, end, duration) => {
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    element.textContent = Math.floor(progress * (end - start) + start) + '+';
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    }
+                };
+                window.requestAnimationFrame(step);
+            };
+
+            const handleIntersection = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const element = entry.target;
+                        const end = parseInt(element.getAttribute('data-target'));
+                        animateCounter(element, 0, end, 2000);
+                        observer.unobserve(element);
+                    }
+                });
+            };
+
+            const observer = new IntersectionObserver(handleIntersection, {
+                root: null,
+                threshold: 0.2,
+            });
+
+            counterElements.forEach(counter => {
+                observer.observe(counter);
+            });
+
+            // Play button handler
+            document.querySelectorAll('.play-button').forEach(button => {
+                button.addEventListener('click', () => {
+                    alert('Video akan diputar');
+                });
+            });
+
+            // Smooth scrolling for internal links
+            // Memperbaiki pemanggilan toggleMobileMenu() agar selalu dipanggil
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                        // Pastikan menu tertutup setelah klik link internal
+                        if (mainNav.classList.contains('active')) {
+                            toggleMobileMenu();
+                        }
+                    }
+                });
+            });
+
+            // Event handler for CTA buttons
+            document.querySelectorAll('.btn-cta, .browse-cta').forEach(button => {
+                button.addEventListener('click', function() {
+                    alert('Tombol diklik!');
+                });
+            });
+
+            // Load more button
+            document.querySelector('.load-more-btn').addEventListener('click', function() {
+                alert('Memuat lebih banyak acara...');
+            });
+
+            // Testimonial navigation functionality (simplified for fixed cards)
+            const testimonialCards = document.querySelectorAll('.testimonial-card'); // Digunakan jika ada carousel
+            const navButtons = document.querySelectorAll('.testimonial-nav-btn');
+            const testimonialContainer = document.getElementById('testimonialContainer');
+
+            navButtons.forEach((button, index) => {
+                button.addEventListener('click', function() {
+                    navButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    // Alert ini hanya placeholder, ganti dengan logika carousel nyata jika diperlukan
+                    alert('Navigasi testimoni diklik. Ini adalah contoh placeholder untuk slider/carousel.');
+                });
+            });
+
+            // Handle testimonial form submission
+            const testimonialForm = document.getElementById('testimonialForm');
+            if (testimonialForm) {
+                testimonialForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    const name = document.getElementById('testimonialName').value;
+                    const email = document.getElementById('testimonialEmail').value;
+                    const message = document.getElementById('testimonialMessage').value;
+                    const rating = document.querySelector('input[name="rating"]:checked').value;
+
+                    alert('Terima kasih! Testimoni Anda telah dikirim dan akan ditampilkan setelah diverifikasi.');
+                    testimonialForm.reset();
+                    console.log('New testimonial:', { name, email, message, rating, date: new Date().toLocaleDateString() });
+                });
+            }
+
+            // Back to top button functionality
+            const backToTopButton = document.querySelector('.back-to-top');
+
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    backToTopButton.classList.add('visible');
+                } else {
+                    backToTopButton.classList.remove('visible');
+                }
+            });
+
+            backToTopButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // --- Hamburger Menu Functionality ---
+            // Pastikan elemen sudah ada saat diakses
+            const hamburgerBtn = document.querySelector('.hamburger-menu');
+            const mainNav = document.getElementById('main-nav');
+            const navOverlay = document.getElementById('navOverlay');
+
+            // Fungsi untuk membuka/menutup menu mobile
+            function toggleMobileMenu() {
+                // Toggle class 'active' pada navigasi utama
+                mainNav.classList.toggle('active');
+                // Toggle class 'active' pada overlay
+                navOverlay.classList.toggle('active');
+                // Mengunci scroll body saat menu terbuka untuk pengalaman UX yang lebih baik
+                document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
+            }
+
+            // Event listener untuk tombol hamburger
+            if (hamburgerBtn) { // Pastikan tombol ada sebelum menambahkan event listener
+                hamburgerBtn.addEventListener('click', toggleMobileMenu);
+            }
+
+            // Event listener untuk overlay (klik di luar area menu untuk menutup)
+            if (navOverlay) { // Pastikan overlay ada sebelum menambahkan event listener
+                navOverlay.addEventListener('click', toggleMobileMenu);
+            }
+
+            // Event listener untuk setiap link navigasi (menutup menu setelah klik link)
+            document.querySelectorAll('#main-nav .nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    // Cek jika menu sedang terbuka, lalu tutup
+                    if (mainNav.classList.contains('active')) {
+                        toggleMobileMenu();
+                    }
+                });
+            });
+        }); // Penutup DOMContentLoaded
+    </script>
+    <a href="#" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <footer class="footer-section" id="footer">
+        <div class="footer-top">
+            <div class="footer-column">
+                <div class="footer-logo">
+                    <img src="assets/images/logo.jpg" alt="Festivly Logo">
+                </div>
+                <p class="footer-desc">Platform event organizer terpercaya untuk mewujudkan acara impian Anda. Temukan berbagai vendor dan layanan terbaik.</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Services</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Pernikahan</a></li>
+                    <li><a href="#">Acara Korporasi</a></li>
+                    <li><a href="#">Ulang Tahun</a></li>
+                    <li><a href="#">Konser Musik</a></li>
+                    <li><a href="#">Seminar dan Workshop</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Company</h4>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our Team</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Contact Us</h4>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Jl. Event Organizer No. 123, Jakarta</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+62 123 4567 890</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@festivly.id</span>
+                    </div>
+                </div>
+                <div class="newsletter">
+                    <h5>Subscribe to our newsletter</h5>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Your email">
+                        <button>Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Festivly. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Sitemap</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

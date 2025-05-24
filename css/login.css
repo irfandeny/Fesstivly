@@ -1,0 +1,218 @@
+.container {
+    background-color: #fff;
+    border-radius: 50px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+        0 10px 10px rgba(0, 0, 0, 0.22);
+    position: relative;
+    overflow: hidden;
+    width: 900px;
+    max-width: 100%;
+    min-height: 550px;
+    display: flex;
+}
+
+.form-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+}
+
+/* Form Sign In */
+.sign-in-container {
+    left: 0;
+    width: 50%;
+    z-index: 2;
+}
+
+/* Form Sign Up */
+.sign-up-container {
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+}
+
+.container.right-panel-active .sign-up-container {
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+}
+
+.container.right-panel-active .sign-in-container {
+    transform: translateX(100%);
+    opacity: 0;
+}
+
+/* Form umum */
+form {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    padding: 0 50px;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Wrapper untuk input dan icon */
+.input-icon {
+    position: relative;
+    width: 100%;
+    margin: 12px 0;
+}
+
+/* Icon posisinya absolut di dalam input box */
+.input-icon i {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #f91f6f;
+    font-size: 18px;
+    pointer-events: none;
+    /* agar klik ke input tetap aktif */
+    z-index: 2;
+}
+
+/* Input field dengan padding kiri agar tidak tertutup icon */
+.input-icon input {
+    width: 100%;
+    height: 45px;
+    padding-left: 42px;
+    /* ruang untuk icon */
+    font-size: 16px;
+    border-radius: 8px;
+    border: 2px solid #fbb1cf;
+    background-color: #f0f0f0;
+    transition: border-color 0.3s ease;
+    position: relative;
+    z-index: 1;
+    outline: none;
+}
+
+.input-icon input:focus {
+    border-color: #f91f6f;
+}
+
+/* Tombol dengan jarak atas agar tidak terlalu mepet ke input terakhir */
+button {
+    border-radius: 20px;
+    border: none;
+    background-color: #f91f6f;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: transform 80ms ease-in;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+/* Container overlay kanan */
+.overlay-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.6s ease-in-out;
+    z-index: 100;
+}
+
+.container.right-panel-active .overlay-container {
+    transform: translateX(-100%);
+}
+
+/* Overlay */
+.overlay {
+    background: #0C0B3E;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+}
+
+.container.right-panel-active .overlay {
+    transform: translateX(50%);
+}
+
+/* Panel overlay */
+.overlay-panel {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 40px;
+    text-align: center;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    transition: transform 0.6s ease-in-out;
+}
+
+.overlay-left {
+    transform: translateX(-20%);
+    left: 0;
+}
+
+.container.right-panel-active .overlay-left {
+    transform: translateX(0);
+}
+
+.overlay-right {
+    right: 0;
+    transform: translateX(0);
+}
+
+.container.right-panel-active .overlay-right {
+    transform: translateX(20%);
+}
+
+/* Perbesar logo */
+.logo {
+    width: 180px;
+    margin-bottom: 30px;
+}
+
+/* Styling untuk opsi sosial login */
+.social-login {
+    margin-top: 30px;
+    font-size: 14px;
+    color: #666;
+    user-select: none;
+}
+
+.social-login p {
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+.social-icons a {
+    color: #f91f6f;
+    font-size: 22px;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #d60057; }

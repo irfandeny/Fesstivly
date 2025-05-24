@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Festivly - Arunika Live Music</title>
+    <meta name="description" content="Detail event Arunika Live Music di Festivly. Pesan sekarang untuk pengalaman musik tak terlupakan.">
+    <meta name="keywords" content="Arunika Live Music, Festivly, event musik, konser, detail event">
+    <meta name="theme-color" content="#0e0020">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif; 
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            color: #fff; 
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(45deg, rgba(255, 100, 150, 0.05) 1px, transparent 1px),
+                linear-gradient(-45deg, rgba(255, 100, 150, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -2;
+            opacity: 0.5;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255, 100, 150, 0.1) 1px, transparent 1px),
+                radial-gradient(circle at 80% 70%, rgba(100, 150, 255, 0.1) 1px, transparent 1px),
+                radial-gradient(circle at 40% 80%, rgba(255, 200, 100, 0.08) 1px, transparent 1px);
+            z-index: -1;
+            opacity: 0.7;
+        }
+
+        /* --- Standard Festivly Header --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: #0e0020; 
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3); 
+            transition: all 0.3s ease;
+        }
+        
+        .logo { 
+            font-size: 24px; 
+            font-weight: bold;
+            color: #fff;
+            display: flex;
+            align-items: center;
+        }
+        .logo a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .logo img {
+            max-height: 80px; 
+            transition: transform 0.3s ease;
+        }
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        nav#main-nav { 
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            font-family: 'Montserrat', sans-serif; 
+        }
+        nav#main-nav a.nav-link { 
+            color: #bb4040; 
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease; 
+            padding: 8px 0; 
+            position: relative; 
+            min-width: 44px; 
+            min-height: 44px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        nav#main-nav a.nav-link:hover {
+            color: #ff00cc; 
+        }
+        nav#main-nav a.nav-link.active {
+            color: #ff00cc; 
+            font-weight: bold;
+        }
+        nav#main-nav a.nav-link.active::after { 
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #ff00cc; 
+            transform: scaleX(0.7);
+            transition: transform 0.3s ease;
+        }
+        nav#main-nav a.nav-link:last-child { 
+            background: #ff008c; 
+            padding: 8px 16px; 
+            border-radius: 5px; 
+            color: white;
+            margin-left: 15px; 
+            font-weight: 500; 
+        }
+        nav#main-nav a.nav-link:last-child:hover {
+            background: #ff40a5; 
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(255, 0, 140, 0.3);
+        }
+
+        .hamburger-menu {
+            display: none; 
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: #fff;
+            cursor: pointer;
+            z-index: 1001; 
+            padding: 10px; 
+        }
+
+        .nav-overlay {
+            display: none; 
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            z-index: 998; 
+        }
+        .nav-overlay.active {
+            display: block;
+        }
+        /* --- End Standard Festivly Header --- */
+        
+        .container { 
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .main-content {
+            padding: 3rem 0;
+            position: relative; 
+            z-index: 1;
+        }
+
+        /* Styles for Arunika Page Content (largely preserved) */
+        .event-detail-card {
+            background: rgba(30, 30, 60, 0.85); 
+            backdrop-filter: blur(15px); 
+            border-radius: 20px;
+            padding: 2.5rem; 
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            border: 1px solid rgba(255, 100, 150, 0.25);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35); 
+        }
+        .event-image-gallery .main-image {
+            width: 100%;
+            height: 450px; 
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            border: 2px solid rgba(255,100,150,0.3); 
+        }
+        .thumbnail-gallery {
+            display: flex;
+            gap: 0.75rem; 
+            flex-wrap: wrap; 
+        }
+        .thumbnail {
+            width: 90px; 
+            height: 70px; 
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            opacity: 0.6; 
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); 
+            border: 2px solid transparent;
+        }
+        .thumbnail:hover,
+        .thumbnail.active-thumbnail {
+            opacity: 1;
+            transform: scale(1.1) translateY(-2px); 
+            border-color: #ff6496;
+            box-shadow: 0 4px 10px rgba(255,100,150,0.3); 
+        }
+        .event-details h1 {
+            font-size: 2.8rem; 
+            font-weight: 700;
+            margin-bottom: 0.75rem; 
+            background: linear-gradient(135deg, #ff6496, #82aaff); 
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2; 
+        }
+        .category {
+            color: #ff6496;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem; 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px; 
+        }
+        .location {
+            color: #c0c0c0; 
+            margin-bottom: 0.75rem; 
+            font-size: 1rem; 
+        }
+        .location::before {
+            content: "\f3c5"; 
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            margin-right: 0.5em;
+            color: #82aaff; 
+        }
+        .price {
+            color: #69f0ae; 
+            font-size: 1.5rem; 
+            font-weight: 700; 
+            margin-bottom: 1.5rem; 
+            display: inline-block; 
+            padding: 0.25rem 0.75rem;
+            background-color: rgba(105, 240, 174, 0.1);
+            border-radius: 8px;
+        }
+        .event-details h2 {
+            color: #ff6496;
+            font-size: 1.5rem; 
+            margin: 1.5rem 0 1rem 0; 
+            font-weight: 600;
+            border-bottom: 1px solid rgba(255,100,150,0.2); 
+            padding-bottom: 0.5rem; 
+        }
+        .event-details p {
+            line-height: 1.7; 
+            margin-bottom: 1.25rem; 
+            color: #e0e0e0;
+            font-size: 1rem; 
+        }
+        .event-details ul {
+            margin-left: 0; 
+            margin-bottom: 1.5rem; 
+            padding-left: 0; 
+            list-style: none; 
+        }
+        .event-details li {
+            color: #e0e0e0;
+            margin-bottom: 0.75rem; 
+            position: relative;
+            padding-left: 1.8rem; 
+            font-size: 0.95rem; 
+        }
+        .event-details li::before {
+            content: '\f00c'; 
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900; 
+            color: #ff6496;
+            position: absolute;
+            left: 0;
+            top: 2px; 
+            font-size: 0.9em; 
+        }
+        .action-buttons {
+            display: flex;
+            gap: 1.5rem; 
+            margin-top: 2.5rem; 
+        }
+        .pesan-btn, .batal-btn { 
+            color: white;
+            border: none;
+            padding: 0.9rem 2.5rem; 
+            border-radius: 30px;
+            font-weight: 600; 
+            font-size: 1rem; 
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            flex: 1;
+            text-align: center; 
+        }
+        .pesan-btn {
+            background: linear-gradient(135deg, #ff6496, #ff4081);
+        }
+        .pesan-btn:hover {
+            transform: translateY(-3px) scale(1.02); 
+            box-shadow: 0 10px 25px rgba(255, 100, 150, 0.45);
+        }
+        .batal-btn {
+            background: linear-gradient(135deg, #6c757d, #495057); 
+        }
+        .batal-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(108, 117, 125, 0.3);
+        }
+
+        /* --- Standard Festivly Footer --- */
+        .footer-section { 
+            background: linear-gradient(to bottom, #0b001a, #000000);
+            color: #fff;
+            padding: 70px 0 0;
+            position: relative;
+            overflow: hidden;
+            margin-top: 4rem; 
+            font-family: 'Montserrat', sans-serif; 
+        }
+        .footer-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff00cc, #3333ff);
+        }
+        .footer-top {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 50px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+            padding: 0 15px;
+        }
+        .footer-logo img { 
+            max-height: 60px;
+            margin-bottom: 20px;
+        }
+        .footer-desc {
+            color: #bbb;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        .footer-column .social-links { 
+            display: flex;
+            gap: 15px;
+        }
+        .social-icon { 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .social-icon:hover {
+            background: #ff008c;
+            transform: translateY(-5px);
+        }
+        .footer-column h4 { 
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .footer-column h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background: #ff008c;
+        }
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s ease, padding-left 0.3s;
+            display: inline-block; 
+            font-size: 0.9rem;
+        }
+        .footer-links a:hover {
+            color: #ff008c;
+            padding-left: 5px;
+        }
+        .footer-column .contact-info { 
+            margin-bottom: 20px;
+        }
+        .footer-column .contact-item { 
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            color: #bbb; 
+            font-size: 0.9rem;
+        }
+        .footer-column .contact-item i {
+            color: #ff008c;
+            margin-right: 10px;
+            margin-top: 5px; 
+            width: 16px; 
+            text-align: center;
+        }
+        .footer-column .newsletter h5 { 
+            font-size: 1.1rem; 
+            margin-bottom: 15px;
+            color: #fff;
+            font-weight: 600; 
+        }
+        .footer-column .newsletter-form { 
+            display: flex;
+            margin-bottom: 20px; 
+        }
+        .footer-column .newsletter-form input {
+            flex: 1;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255,255,255,0.2); 
+            border-radius: 4px 0 0 4px;
+            color: #fff;
+            outline: none;
+            font-family: 'Montserrat', sans-serif; 
+            font-size: 0.9rem;
+        }
+        .footer-column .newsletter-form input::placeholder {
+            color: #aaa;
+        }
+        .footer-column .newsletter-form button {
+            background: #ff008c;
+            color: white;
+            border: none;
+            padding: 0 15px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            font-weight: 500;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .footer-column .newsletter-form button:hover {
+            background: #ff40a5;
+        }
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            flex-wrap: wrap; 
+        }
+        .footer-bottom p {
+            color: #777;
+            margin: 5px 0; 
+            font-size: 0.85rem;
+        }
+        .footer-bottom-links {
+            display: flex;
+            gap: 20px;
+            margin: 5px 0; 
+        }
+        .footer-bottom-links a {
+            color: #777;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.85rem;
+        }
+        .footer-bottom-links a:hover {
+            color: #ff008c;
+        }
+        /* --- End Standard Festivly Footer --- */
+
+
+        /* --- Standard Responsive Styles for Header, Nav, Footer --- */
+        @media screen and (max-width: 992px) {
+            header {
+                padding: 15px 0; 
+            }
+            header .container { /* Ensure header content uses container padding */
+                padding: 0 20px; 
+            }
+            nav#main-nav { 
+                display: none; 
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                right: -250px; 
+                width: 250px;  
+                height: 100%;
+                background: #1a0035; 
+                padding: 60px 20px 20px; 
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5); 
+                transition: right 0.3s ease-in-out; 
+                z-index: 999;
+                align-items: flex-start;
+            }
+            nav#main-nav.active {
+                right: 0; 
+                display: flex; 
+            }
+            nav#main-nav a.nav-link {
+                margin: 15px 0; 
+                width: 100%;
+                justify-content: flex-start;
+                padding: 10px 0; 
+                font-size: 1rem; 
+                color: #e0e0e0; /* Standard mobile nav link color */
+            }
+            nav#main-nav a.nav-link:hover {
+                color: #ff00cc; 
+                padding-left: 5px; 
+            }
+            nav#main-nav a.nav-link.active {
+                color: #ff00cc;
+                font-weight: bold;
+            }
+            nav#main-nav a.nav-link.active::after { 
+               display: none; 
+            }
+            nav#main-nav a.nav-link:last-child { 
+                margin-left: 0;
+                margin-top: 20px;
+                width: 100%; 
+                text-align: center; 
+                background: #ff008c; 
+                padding: 10px 20px; 
+                border-radius: 5px;
+                color: white;
+            }
+             nav#main-nav a.nav-link:last-child:hover {
+                background: #ff40a5;
+                transform: translateY(-2px);
+                box-shadow: 0 2px 5px rgba(255,0,140,0.3);
+            }
+            .hamburger-menu {
+                display: block;
+            }
+
+            /* Arunika page specific content adjustments */
+            .container { 
+                padding: 0 1.5rem; 
+            }
+            .event-detail-card {
+                padding: 2rem; 
+                gap: 2rem;
+            }
+             .event-image-gallery .main-image {
+                height: 350px;
+            }
+             .footer-top, .footer-bottom { /* Ensure footer content also respects container padding */
+                 padding-left: 1.5rem;
+                 padding-right: 1.5rem;
+            }
+            .footer-column {
+                min-width: calc(50% - 30px); 
+                flex-basis: calc(50% - 30px);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header .container { 
+                 padding: 0 15px;
+            }
+            .logo img {
+                max-height: 60px; 
+            }
+            
+            /* Arunika page specific content adjustments */
+            .main-content {
+                padding: 2rem 0;
+            }
+            .event-detail-card {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 1.5rem;
+            }
+            .event-image-gallery .main-image {
+                height: 300px;
+            }
+            .thumbnail-gallery {
+                justify-content: center; 
+            }
+            .event-details h1 {
+                font-size: 2.2rem; 
+            }
+            .action-buttons {
+                flex-direction: column;
+                gap: 0.75rem; 
+            }
+            .pesan-btn, .batal-btn {
+                padding: 0.8rem 2rem; 
+                font-size: 0.95rem; 
+            }
+            /* Standard Footer Responsive */
+            .footer-column { 
+                min-width: 100%;
+                flex-basis: 100%;
+                text-align: center; 
+            }
+            .footer-column .social-links, .footer-column .newsletter-form {
+                justify-content: center;
+            }
+            .footer-column h4::after { 
+                left: 50%;
+                transform: translateX(-50%);
+            }
+             .footer-column .newsletter-form {
+                flex-direction: column; 
+                align-items: center; 
+                gap: 0.5rem;
+            }
+            .footer-column .newsletter-form input, .footer-column .newsletter-form button {
+                width: 100%;
+                max-width: 350px; 
+                margin-right: 0;
+            }
+            .footer-column .newsletter-form input {
+                margin-bottom: 0.5rem;
+                text-align: center;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            .footer-bottom-links {
+                 justify-content: center;
+                 margin-top: 10px;
+            }
+            header {
+                flex-direction: row; /* Keep logo and hamburger on one line */
+                justify-content: space-between;
+                padding: 15px;
+            }
+
+            .logo {
+                margin-bottom: 0; /* Remove margin */
+            }
+
+            .hero {
+                padding: 80px 15px 60px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .counter-stats {
+                gap: 20px; /* Reduce gap */
+            }
+
+            .counter-item {
+                flex-basis: 100%; /* Stack counters vertically */
+                max-width: 150px; /* Keep items centered */
+                margin: 0 auto;
+            }
+
+            .event-card {
+                flex-direction: column; /* Stack event info vertically */
+            }
+
+            .event-image {
+                width: 100%;
+                height: 150px;
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+
+            .event-info {
+                flex-direction: column;
+            }
+
+            .testimonial-section {
+                padding: 40px 15px;
+            }
+
+            .testimonial-heading h2 {
+                font-size: 1.8rem;
+            }
+
+            .testimonial-card {
+                padding: 20px 15px;
+                min-width: 100%; /* Full width for cards */
+            }
+
+            .testimonial-user {
+                flex-direction: column;
+                align-items: flex-start; /* Align items to left */
+                margin-bottom: 10px; /* Adjust margin */
+            }
+
+            .testimonial-avatar {
+                margin-right: 0;
+                margin-bottom: 10px; /* Add margin below avatar */
+            }
+
+            .testimonial-title {
+                font-size: 0.8rem;
+            }
+
+            .testimonial-rating {
+                align-self: flex-start; /* Align stars to left */
+                margin-top: 5px;
+            }
+
+            .footer-column {
+                flex: 100%; /* Stack footer columns */
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-bottom-links {
+                justify-content: center;
+                margin-top: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header .container {
+                padding: 0 10px; 
+            }
+            .logo img {
+                max-height: 50px; 
+            }
+            
+            /* Arunika page specific content adjustments */
+            .container {
+                padding: 0 1rem; 
+            }
+            .event-detail-card {
+                padding: 1rem;
+                border-radius: 15px; 
+            }
+            .event-image-gallery .main-image {
+                height: 250px;
+            }
+            .thumbnail {
+                width: 60px; 
+                height: 45px;
+            }
+            .event-details h1 {
+                font-size: 1.8rem;
+            }
+            .event-details h2 {
+                font-size: 1.3rem;
+            }
+            .price {
+                font-size: 1.3rem;
+            }
+            .pesan-btn, .batal-btn {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            .footer-top, .footer-bottom {
+                 padding-left: 1rem;
+                 padding-right: 1rem;
+            }
+
+            header {
+                padding: 10px;
+            }
+            .logo img {
+                max-height: 60px;
+            }
+            .hero h1 {
+                font-size: 24px;
+            }
+            .festivly-heading h2, .browse-events h2, .upcoming-events h2 {
+                font-size: 2rem;
+            }
+            .counter-value {
+                font-size: 2rem;
+            }
+            .kategori h2 {
+                font-size: 24px;
+            }
+            .grid-kategori {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            }
+            .browse-events .events-grid {
+                grid-template-columns: 1fr; /* Single column for browse events */
+            }
+            .testimonial-form {
+                padding: 20px; /* Reduce form padding */
+            }
+        }
+        /* --- End Standard Responsive Styles --- */
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/images/logo.jpg" alt="Festivly Logo">
+            </a>
+        </div>
+        <button class="hamburger-menu" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+        <nav id="main-nav">
+            <a href="#hero-section" class="nav-link active">Home</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="event.html" class="nav-link">Event</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+            <a href="login.html" class="nav-link">Login</a>
+        </nav>
+    </header>
+
+    <div class="nav-overlay" id="navOverlay"></div>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="event-detail-card">
+                <div class="event-image-gallery">
+                    <img id="mainImage" src="assets/images/41edb4b17a3e4ae99d43560cccfab7bd.jpg" alt="Arunika Live Music Main" class="main-image">
+                    <div class="thumbnail-gallery">
+                        <img src="assets/images/5f62bec7563d4ff0ba99971735181e67.jpg" alt="Arunika Live Music Thumbnail 1" class="thumbnail active-thumbnail" data-index="0">
+                        <img src="assets/images/41edb4b17a3e4ae99d43560cccfab7bd.jpg" alt="Arunika Live Music Thumbnail 2" class="thumbnail" data-index="1">
+                        <img src="assets/images/41edb4b17a3e4ae99d43560cccfab7bd.jpg" alt="Arunika Live Music Thumbnail 3" class="thumbnail" data-index="2">
+                        <img src="assets/images/41edb4b17a3e4ae99d43560cccfab7bd.jpg" alt="Arunika Live Music Thumbnail 4" class="thumbnail" data-index="3">
+                    </div>
+                </div>
+                <div class="event-details">
+                    <h1>Arunika Live Music</h1>
+                    <p class="category">Musik / Hiburan</p>
+                    <p class="location">Malang, Indonesia</p>
+                    <p class="price">Rp 5.000.000 - Rp 10.000.000</p>
+
+                    <h2>Deskripsi</h2>
+                    <p>Hidupkan acaramu dengan alunan musik keren dari Arunika! Kami menyediakan berbagai format mulai dari band live akustik, full band, DJ performance, hingga penampilan solois yang memukau. Arunika siap membuat pesta dan acaramu semakin meriah dan tak terlupakan!</p>
+
+                    <h2>Paket Standar</h2>
+                    <ul>
+                        <li>Band 4 personil (vokal, gitar, bass, cajon/drum elektrik)</li>
+                        <li>Durasi performansi hingga 3 sesi (masing-masing 45 menit)</li>
+                        <li>Pilihan playlist lagu yang dapat disesuaikan (maksimal 10 lagu request)</li>
+                        <li>Peralatan sound system standar untuk skala acara kecil hingga menengah</li>
+                        <li>Konsultasi musik gratis untuk pemilihan genre dan lagu</li>
+                    </ul>
+                     <h2>Keunggulan Kami</h2>
+                    <ul>
+                        <li>Musisi Profesional & Berpengalaman</li>
+                        <li>Repertoar Lagu Luas (Pop, Jazz, Rock, Akustik, dll.)</li>
+                        <li>Fleksibel & Adaptif dengan Tema Acara</li>
+                        <li>Interaktif dengan Audiens</li>
+                        <li>Harga Kompetitif dengan Kualitas Premium</li>
+                    </ul>
+
+                    <div class="action-buttons">
+                        <button class="pesan-btn" aria-label="Pesan layanan Arunika Live Music">PESAN SEKARANG</button>
+                        <a href="event.html" class="batal-btn" aria-label="Kembali atau batalkan">KEMBALI</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+    <footer class="footer-section" id="footer">
+        <div class="footer-top">
+            <div class="footer-column">
+                <div class="footer-logo">
+                    <img src="assets/images/logo.jpg" alt="Festivly Logo">
+                </div>
+                <p class="footer-desc">Platform event organizer terpercaya untuk mewujudkan acara impian Anda. Temukan berbagai vendor dan layanan terbaik.</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Services</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Pernikahan</a></li>
+                    <li><a href="#">Acara Korporasi</a></li>
+                    <li><a href="#">Ulang Tahun</a></li>
+                    <li><a href="#">Konser Musik</a></li>
+                    <li><a href="#">Seminar dan Workshop</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Company</h4>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our Team</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Contact Us</h4>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Jl. Event Organizer No. 123, Jakarta</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+62 123 4567 890</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@festivly.id</span>
+                    </div>
+                </div>
+                <div class="newsletter">
+                    <h5>Subscribe to our newsletter</h5>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Your email">
+                        <button>Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Festivly. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Sitemap</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- Hamburger Menu Functionality ---
+        const hamburgerBtn = document.querySelector('.hamburger-menu');
+        const mainNav = document.getElementById('main-nav'); 
+        const navOverlay = document.getElementById('navOverlay'); 
+
+        function toggleMobileMenu() {
+            if (mainNav && navOverlay && hamburgerBtn) { 
+                mainNav.classList.toggle('active');
+                navOverlay.classList.toggle('active');
+                const isExpanded = mainNav.classList.contains('active');
+                hamburgerBtn.setAttribute('aria-expanded', isExpanded.toString());
+                document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
+            }
+        }
+
+        if (hamburgerBtn) {
+            hamburgerBtn.addEventListener('click', toggleMobileMenu);
+        }
+        if (navOverlay) {
+            navOverlay.addEventListener('click', toggleMobileMenu);
+        }
+
+        if (mainNav) {
+            document.querySelectorAll('#main-nav a.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (mainNav.classList.contains('active')) {
+                        toggleMobileMenu();
+                    }
+                });
+            });
+        }
+
+        // Image Gallery Functionality
+        const mainImage = document.getElementById('mainImage');
+        const thumbnails = document.querySelectorAll('.thumbnail');
+
+        if (mainImage && thumbnails.length > 0) {
+            thumbnails.forEach(thumbnail => {
+                thumbnail.addEventListener('click', function() {
+                    thumbnails.forEach(thumb => {
+                        thumb.classList.remove('active-thumbnail');
+                    });
+                    this.classList.add('active-thumbnail');
+                    mainImage.src = this.src;
+                    mainImage.alt = this.alt.replace("Thumbnail", "Main");
+                });
+            });
+        }
+
+        // Smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]:not(#main-nav a)').forEach(anchor => { // Exclude nav links as they are handled
+            anchor.addEventListener('click', function (e) {
+                const hrefAttribute = this.getAttribute('href');
+                if (hrefAttribute && hrefAttribute.startsWith('#') && hrefAttribute.length > 1) {
+                    try {
+                        const targetElement = document.querySelector(hrefAttribute);
+                        if (targetElement) {
+                            e.preventDefault();
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth'
+                            });
+                        }
+                    } catch (error) {
+                        // console.error("Error scrolling to anchor:", error);
+                    }
+                } else if (hrefAttribute === '#') {
+                     e.preventDefault(); 
+                }
+            });
+        });
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> <meta name="description" content="Login atau daftar ke Festivly untuk mengakses fitur lengkap dan merencanakan acara impian Anda."> <meta name="keywords" content="login festivly, daftar festivly, akun event organizer, masuk festivly"> <meta name="theme-color" content="#0e0020"> <title>Login - Festivly</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0; /* Added for consistency */
+      padding: 0; /* Added for consistency */
+    }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #0e0020;
+      color: #fff;
+      scroll-behavior: smooth;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: #0e0020;
+      position: sticky; /* Was relative, changed to sticky for consistency */
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3); /* Added shadow */
+      transition: all 0.3s ease; /* Added transition */
+    }
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #fff;
+      display: flex;
+      align-items: center;
+    }
+    .logo a { /* Added for consistency */
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+    }
+    .logo img {
+      max-height: 80px;
+      transition: transform 0.3s ease;
+      max-width: 100%; /* Added for consistency */
+      height: auto; /* Added for consistency */
+    }
+    .logo img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Desktop Navigation */
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    nav a {
+      color: #bb4040;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease; /* Changed from color to all */
+      padding: 8px 0; /* Added padding for consistency */
+      position: relative; /* Added for ::after */
+      min-width: 44px; /* Added for touch target */
+      min-height: 44px; /* Added for touch target */
+      display: flex; /* Added for centering */
+      align-items: center; /* Added for centering */
+      justify-content: center; /* Added for centering */
+    }
+    nav a:hover {
+      color: #ff00cc;
+    }
+    nav a.active { /* Desktop active link style */
+      color: #ff00cc;
+      font-weight: bold;
+    }
+    nav a.active::after { /* Underline for active link */
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: #ff00cc;
+        transform: scaleX(0.7);
+        transition: transform 0.3s ease;
+    }
+    nav a:last-child { /* Desktop Login button specific style */
+      background: #ff008c;
+      padding: 8px 16px;
+      border-radius: 5px;
+      color: white;
+      margin-left: 15px; /* Added margin */
+    }
+    nav a:last-child:hover { /* Added hover for login button */
+        background: #ff40a5;
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(255,0,140,0.3);
+    }
+
+    /* Hamburger Menu Icon */
+    .hamburger-menu {
+        display: none; 
+        background: none;
+        border: none;
+        font-size: 28px;
+        color: #fff;
+        cursor: pointer;
+        z-index: 1001; 
+        padding: 10px; 
+    }
+
+    /* Navigation Overlay */
+    .nav-overlay {
+        display: none; 
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        z-index: 998; 
+    }
+    .nav-overlay.active {
+        display: block;
+    }
+    
+    /* Login Section */
+    .login-section {
+      min-height: calc(100vh - 120px); /* Adjusted to account for header height if sticky */
+      display: flex;
+      align-items: center; /* Vertically center the login container */
+      justify-content: center; /* Horizontally center the login container */
+      padding: 40px 20px; /* Adjusted padding */
+      background: linear-gradient(to right, #0e0020 0%, #150035 100%);
+    }
+    
+    .login-container {
+      max-width: 1000px; /* Adjusted max-width slightly for better balance */
+      margin: auto; 
+      width: 100%;
+      display: flex;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    .login-image {
+      flex: 1;
+      background: url('assets/images/346cd92f0ad845a59e971a5d25850e84.jpg') center center/cover no-repeat; /* Ensure image path */
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px; /* Added padding */
+    }
+    
+    .login-image::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(14, 0, 32, 0.75), rgba(26, 0, 82, 0.75)); /* Slightly increased opacity */
+    }
+    
+    .login-image-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 100%; /* Was 80% */
+    }
+    
+    .login-image-content h2 {
+      font-size: 2.2rem; /* Adjusted size */
+      margin-bottom: 20px;
+      color: #fff;
+    }
+    
+    .login-image-content p {
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.7;
+      margin-bottom: 30px;
+      font-size: 1rem; /* Adjusted size */
+    }
+    
+    .login-image-content .brand-logo {
+      max-width: 150px; /* Adjusted size */
+      margin-bottom: 25px;
+    }
+    
+    .login-form-container {
+      flex: 1.2; /* Give slightly more space to form */
+      background: rgba(31, 1, 68, 0.85); /* Slightly increased opacity */
+      padding: 50px 40px; /* Adjusted padding */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .login-form-container .login-tabs {
+      display: flex;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 30px;
+    }
+    
+    .login-tab {
+      padding: 12px 25px; /* Adjusted padding */
+      font-weight: 600;
+      cursor: pointer;
+      position: relative;
+      color: rgba(255, 255, 255, 0.6);
+      transition: all 0.3s ease;
+      font-size: 0.95rem; /* Adjusted size */
+    }
+    
+    .login-tab.active {
+      color: #fff;
+    }
+    
+    .login-tab::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; /* Ensure it aligns with border */
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: #ff008c;
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+    
+    .login-tab.active::after {
+      transform: scaleX(1);
+    }
+    
+    .login-form-heading {
+      margin-bottom: 25px; /* Adjusted margin */
+    }
+    
+    .login-form-heading h2 {
+      font-size: 2rem; /* Adjusted size */
+      margin-bottom: 10px;
+      color: #fff;
+    }
+    
+    .login-form-heading p {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem; /* Adjusted size */
+    }
+    
+    .login-form { /* This class is used for both login and register forms */
+      margin-bottom: 20px; /* Reduced margin */
+    }
+    
+    .form-group {
+      margin-bottom: 20px; /* Adjusted margin */
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 500;
+      font-size: 0.9rem; /* Adjusted size */
+    }
+    
+    .form-group input {
+      width: 100%;
+      padding: 12px 15px; /* Adjusted padding */
+      background: rgba(255, 255, 255, 0.08); /* Slightly less transparent */
+      border: 1px solid rgba(255, 255, 255, 0.15); /* Slightly less transparent */
+      border-radius: 8px;
+      color: #fff;
+      font-size: 0.95rem; /* Adjusted size */
+      transition: all 0.3s ease;
+    }
+    
+    .form-group input:focus {
+      outline: none;
+      border-color: #ff008c;
+      box-shadow: 0 0 0 2px rgba(255, 0, 140, 0.25); /* Adjusted shadow */
+    }
+    
+    .form-group input::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+    
+    .form-options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px; /* Adjusted margin */
+    }
+    
+    .remember-me {
+      display: flex;
+      align-items: center;
+    }
+    
+    .remember-me input[type="checkbox"] { /* More specific selector */
+      margin-right: 8px;
+      width: auto; /* Override general input width */
+      accent-color: #ff008c; /* Style checkbox color */
+    }
+    
+    .remember-me label {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.85rem; /* Adjusted size */
+      margin-bottom: 0; /* Remove bottom margin from label here */
+    }
+    
+    .forgot-password {
+      color: #ff008c;
+      text-decoration: none;
+      font-size: 0.85rem; /* Adjusted size */
+      transition: color 0.3s ease;
+    }
+    
+    .forgot-password:hover {
+      text-decoration: underline;
+    }
+    
+    .login-btn { /* Used for both login and register buttons */
+      width: 100%;
+      background: #ff008c;
+      color: white;
+      border: none;
+      padding: 14px; /* Adjusted padding */
+      border-radius: 8px;
+      font-size: 0.95rem; /* Adjusted size */
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-bottom: 20px; /* Adjusted margin */
+    }
+    
+    .login-btn:hover {
+      background: #ff40a5;
+      transform: translateY(-2px); /* Slightly less transform */
+      box-shadow: 0 8px 15px rgba(255, 0, 140, 0.25); /* Adjusted shadow */
+    }
+    
+    .social-login {
+      text-align: center;
+    }
+    
+    .social-login-label {
+      display: flex;
+      align-items: center;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 15px; /* Adjusted margin */
+      font-size: 0.85rem; /* Adjusted size */
+    }
+    
+    .social-login-label::before,
+    .social-login-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.2);
+    }
+    
+    .social-login-label::before {
+      margin-right: 10px; /* Adjusted margin */
+    }
+    
+    .social-login-label::after {
+      margin-left: 10px; /* Adjusted margin */
+    }
+    
+    .social-login-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+    
+    .social-login-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px; /* Adjusted size */
+      height: 45px; /* Adjusted size */
+      background: rgba(255, 255, 255, 0.08); /* Slightly less transparent */
+      border-radius: 8px;
+      color: #fff;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 1.1rem; /* Icon size */
+    }
+    
+    .social-login-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-2px);
+    }
+    
+    .signup-prompt {
+      text-align: center;
+      margin-top: 25px; /* Adjusted margin */
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+    }
+    
+    .signup-link {
+      color: #ff008c;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    
+    .signup-link:hover {
+      text-decoration: underline;
+    }
+    
+    /* Register Form (initially hidden by JS) */
+    .register-form {
+      display: none; 
+    }
+    
+    /* Responsive styles */
+    @media screen and (max-width: 992px) {
+        header {
+            padding: 15px 20px;
+        }
+
+        nav { /* Mobile slide-in nav */
+            display: none; 
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            right: -250px; 
+            width: 250px;  
+            height: 100%;
+            background: #1a0035;
+            padding: 60px 20px 20px;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+            transition: right 0.3s ease-in-out;
+            z-index: 999;
+            align-items: flex-start;
+        }
+
+        nav.active {
+            right: 0; 
+            display: flex; 
+        }
+
+        nav a { /* Links inside mobile nav */
+            margin: 15px 0;
+            width: 100%;
+            justify-content: flex-start;
+            padding: 10px 0;
+            min-height: auto;
+        }
+        nav a.nav-link.active { 
+            color: #ff00cc; 
+            font-weight: bold;
+        }
+        nav a.nav-link.active::after {
+           display: none; 
+        }
+        nav a:last-child { /* Login button in mobile nav */
+            margin-left: 0;
+            margin-top: 20px;
+            width: auto; 
+            background: #ff008c; 
+            padding: 10px 20px; 
+            color: white;
+            border-radius: 5px;
+        }
+        nav a:last-child:hover {
+            background: #ff40a5;
+            transform: translateY(-2px); 
+            box-shadow: 0 2px 5px rgba(255,0,140,0.3);
+        }
+
+        .hamburger-menu {
+            display: block;
+        }
+
+        /* Login page specific adjustments for 992px */
+        .login-section {
+            padding-top: 80px; /* Add padding if header is sticky */
+            min-height: 100vh;
+            align-items: flex-start; /* Align to top on smaller screens */
+        }
+        .login-container {
+            flex-direction: column;
+            margin: 20px auto; /* Add some vertical margin */
+        }
+        .login-image {
+            min-height: 250px; /* Reduced min-height */
+            flex-basis: 250px; /* Control height */
+        }
+        .login-form-container {
+            padding: 30px 25px; /* Reduced padding */
+        }
+    }
+    
+    @media screen and (max-width: 768px) {
+        header {
+            flex-direction: row; 
+            justify-content: space-between;
+            padding: 15px;
+        }
+        .logo {
+            margin-bottom: 0; 
+        }
+        /* Nav (slide-in) styles from 992px apply. */
+        /* Removed old 'nav' block that made it flex-column */
+
+        .login-section {
+            padding: 20px 15px; /* Reduced padding further */
+            padding-top: 70px; /* Account for header */
+        }
+        .login-image {
+            display: none; /* Hide image on smaller screens to save space */
+        }
+        .login-form-container {
+            flex: 1; /* Take full width if image is hidden */
+            padding: 30px 20px;
+        }
+        .login-form-heading h2 {
+            font-size: 1.8rem;
+        }
+    }
+    
+    @media screen and (max-width: 576px) {
+        /* Header and Nav (slide-in) from 992px apply */
+        .login-section {
+            padding-top: 60px; /* Account for header */
+        }
+        .login-form-container {
+             padding: 25px 15px;
+        }
+        .form-options {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        .login-tab {
+            padding: 12px 15px; /* Further reduce tab padding */
+            font-size: 0.9rem;
+        }
+        .login-form-heading h2 {
+            font-size: 1.6rem;
+        }
+        .login-btn {
+            padding: 12px;
+            font-size: 0.9rem;
+        }
+        .social-login-buttons {
+            gap: 10px;
+        }
+        .social-login-btn {
+            width: 40px;
+            height: 40px;
+            font-size: 1rem;
+        }
+    }
+    /* Removed specific 480px as 576px should cover most very small mobile needs for login page */
+    /* Styles from 576px cascade down. Header padding set at 480px for consistency. */
+    @media screen and (max-width: 480px) {
+        header {
+            padding: 10px;
+        }
+        .logo img {
+            max-height: 60px;
+        }
+        /* Nav slide-in from 992px applies */
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <a href="index.html">
+        <img src="assets/images/logo.jpg" alt="Festivly Logo">
+      </a>
+    </div>
+    <button class="hamburger-menu" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-nav">
+        <i class="fas fa-bars" aria-hidden="true"></i>
+    </button>
+    <nav id="main-nav">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="event.html" class="nav-link">Event</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+      <a href="login.html" class="nav-link active">Login</a>
+    </nav>
+  </header>
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <section class="login-section">
+    <div class="login-container">
+      <div class="login-image">
+        <div class="login-image-content">
+          <img src="assets/images/logo.jpg" alt="Festivly Logo" class="brand-logo">
+          <h2>Selamat Datang Kembali!</h2> <p>Masuk untuk melanjutkan petualangan event Anda bersama Festivly.</p>
+        </div>
+      </div>
+      
+      <div class="login-form-container">
+        <div class="login-tabs">
+          <div class="login-tab active" data-tab="login" role="tab" aria-selected="true" tabindex="0">Login</div>
+          <div class="login-tab" data-tab="register" role="tab" aria-selected="false" tabindex="-1">Register</div>
+        </div>
+        
+        <div class="login-form active" id="loginFormPanel" role="tabpanel" aria-labelledby="login-tab">
+          <div class="login-form-heading">
+            <h2>Login Akun Anda</h2>
+            <p>Akses semua fitur dengan masuk ke akun Anda.</p>
+          </div>
+          
+          <form id="loginForm">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="Masukkan email Anda" required autocomplete="email">
+            </div>
+            
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" id="password" name="password" placeholder="Masukkan password Anda" required autocomplete="current-password">
+            </div>
+            
+            <div class="form-options">
+              <div class="remember-me">
+                <input type="checkbox" id="remember" name="remember">
+                <label for="remember">Ingat saya</label>
+              </div>
+              
+              <a href="#" class="forgot-password">Lupa password?</a>
+            </div>
+            
+            <button type="submit" class="login-btn">Login</button>
+          </form>
+          
+          <div class="social-login">
+            <div class="social-login-label">Atau login dengan</div>
+            
+            <div class="social-login-buttons">
+              <a href="#" class="social-login-btn" aria-label="Login dengan Google"><i class="fab fa-google"></i></a>
+              <a href="#" class="social-login-btn" aria-label="Login dengan Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="social-login-btn" aria-label="Login dengan Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+          </div>
+          
+          <div class="signup-prompt">
+            Belum punya akun? <a href="#" class="signup-link" id="switchToRegisterFromLogin">Daftar sekarang</a>
+          </div>
+        </div>
+        
+        <div class="register-form" id="registerFormPanel" role="tabpanel" aria-labelledby="register-tab" style="display: none;"> <div class="login-form-heading">
+            <h2>Buat Akun Baru</h2>
+            <p>Bergabunglah dengan Festivly dan mulai rencanakan acaramu!</p>
+          </div>
+          
+          <form id="registerForm">
+            <div class="form-group">
+              <label for="fullname">Nama Lengkap</label>
+              <input type="text" id="fullname" name="fullname" placeholder="Masukkan nama lengkap Anda" required autocomplete="name">
+            </div>
+            
+            <div class="form-group">
+              <label for="register-email">Email</label>
+              <input type="email" id="register-email" name="register-email" placeholder="Masukkan email Anda" required autocomplete="email">
+            </div>
+            
+            <div class="form-group">
+              <label for="register-password">Password</label>
+              <input type="password" id="register-password" name="register-password" placeholder="Minimal 8 karakter" required autocomplete="new-password">
+            </div>
+            
+            <div class="form-group">
+              <label for="confirm-password">Konfirmasi Password</label>
+              <input type="password" id="confirm-password" name="confirm-password" placeholder="Ulangi password Anda" required autocomplete="new-password">
+            </div>
+            
+            <div class="form-options">
+              <div class="remember-me">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">Saya menyetujui <a href="#" class="signup-link">syarat dan ketentuan</a></label>
+              </div>
+            </div>
+            
+            <button type="submit" class="login-btn">Register</button>
+          </form>
+          
+          <div class="social-login">
+            <div class="social-login-label">Atau daftar dengan</div>
+            
+            <div class="social-login-buttons">
+                <a href="#" class="social-login-btn" aria-label="Daftar dengan Google"><i class="fab fa-google"></i></a>
+                <a href="#" class="social-login-btn" aria-label="Daftar dengan Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-login-btn" aria-label="Daftar dengan Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+          </div>
+          
+          <div class="signup-prompt">
+            Sudah punya akun? <a href="#" class="signup-link" id="switchToLoginFromRegister">Login sekarang</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // --- Hamburger Menu Functionality ---
+    const hamburgerBtn = document.querySelector('.hamburger-menu');
+    const mainNav = document.getElementById('main-nav'); 
+    const navOverlay = document.getElementById('navOverlay'); 
+
+    function toggleMobileMenu() {
+        if (mainNav && navOverlay) { 
+            mainNav.classList.toggle('active');
+            navOverlay.classList.toggle('active');
+            const isExpanded = mainNav.classList.contains('active');
+            if(hamburgerBtn) hamburgerBtn.setAttribute('aria-expanded', isExpanded);
+            document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
+        }
+    }
+
+    if (hamburgerBtn) {
+        hamburgerBtn.addEventListener('click', toggleMobileMenu);
+    }
+    if (navOverlay) {
+        navOverlay.addEventListener('click', toggleMobileMenu);
+    }
+
+    // Smooth scrolling for internal links AND closing menu
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const hrefAttribute = this.getAttribute('href');
+            if (hrefAttribute && hrefAttribute.startsWith('#') && hrefAttribute.length > 1) {
+                const targetElement = document.querySelector(hrefAttribute);
+                if (targetElement) {
+                    e.preventDefault();
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    if (mainNav && mainNav.classList.contains('active')) {
+                        toggleMobileMenu();
+                    }
+                }
+            } else if (hrefAttribute === '#') { 
+                e.preventDefault();
+                if (mainNav && mainNav.classList.contains('active')) {
+                    toggleMobileMenu();
+                }
+            }
+        });
+    });
+
+    // Event listener for each navigation link IN THE NAV MENU
+    if (mainNav) {
+        document.querySelectorAll('#main-nav .nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                // Check if the link is not just an anchor for the current page
+                // and the menu is active, then close it.
+                // This helps if links navigate to other pages.
+                if (mainNav.classList.contains('active')) {
+                    // For a login page, clicking nav links usually means going to another page.
+                    // The smooth scroll handler above handles in-page anchors.
+                    // This ensures menu closes if they click "Home", "About" etc. from mobile menu.
+                    toggleMobileMenu(); 
+                }
+            });
+        });
+    }
+
+    // --- Login/Register Tab Functionality ---
+    const loginTabs = document.querySelectorAll('.login-tab');
+    const loginFormPanel = document.getElementById('loginFormPanel');
+    const registerFormPanel = document.getElementById('registerFormPanel');
+    const switchToRegisterLink = document.getElementById('switchToRegisterFromLogin');
+    const switchToLoginLink = document.getElementById('switchToLoginFromRegister');
+
+    function showPanel(panelToShow, tabToActivate) {
+        // Hide all panels
+        if(loginFormPanel) loginFormPanel.style.display = 'none';
+        if(registerFormPanel) registerFormPanel.style.display = 'none';
+        // Deactivate all tabs
+        loginTabs.forEach(t => {
+            t.classList.remove('active');
+            t.setAttribute('aria-selected', 'false');
+            t.setAttribute('tabindex', '-1');
+        });
+
+        // Show selected panel and activate tab
+        if (panelToShow) panelToShow.style.display = 'block';
+        if (tabToActivate) {
+            tabToActivate.classList.add('active');
+            tabToActivate.setAttribute('aria-selected', 'true');
+            tabToActivate.setAttribute('tabindex', '0');
+        }
+    }
+
+    loginTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            const tabType = this.dataset.tab;
+            if (tabType === 'login') {
+                showPanel(loginFormPanel, this);
+            } else if (tabType === 'register') {
+                showPanel(registerFormPanel, this);
+            }
+        });
+        // Keyboard accessibility for tabs
+        tab.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                this.click();
+            }
+        });
+    });
+
+    if (switchToRegisterLink) {
+        switchToRegisterLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            const registerTabElement = document.querySelector('.login-tab[data-tab="register"]');
+            showPanel(registerFormPanel, registerTabElement);
+        });
+    }
+
+    if (switchToLoginLink) {
+        switchToLoginLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            const loginTabElement = document.querySelector('.login-tab[data-tab="login"]');
+            showPanel(loginFormPanel, loginTabElement);
+        });
+    }
+    
+    // Set initial state (Login form visible)
+    const initialLoginTab = document.querySelector('.login-tab[data-tab="login"]');
+    if(initialLoginTab) showPanel(loginFormPanel, initialLoginTab);
+
+
+    // Login form submission
+    const loginFormEl = document.getElementById('loginForm');
+    if (loginFormEl) {
+        loginFormEl.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            // const remember = document.getElementById('remember').checked;
+            console.log('Login Form Submitted', { email, password /*, remember*/ });
+            alert('Login berhasil (simulasi)! Anda akan diarahkan ke halaman utama.');
+            window.location.href = 'index.html'; // Or dashboard page
+        });
+    }
+    
+    // Register form submission
+    const registerFormEl = document.getElementById('registerForm');
+    if (registerFormEl) {
+        registerFormEl.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const fullname = document.getElementById('fullname').value;
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            // const terms = document.getElementById('terms').checked;
+
+            if (password !== confirmPassword) {
+                alert('Password tidak cocok. Silakan coba lagi.');
+                return;
+            }
+            console.log('Register Form Submitted', { fullname, email, password /*, terms*/ });
+            alert('Registrasi berhasil (simulasi)! Silakan login dengan akun baru Anda.');
+            const loginTabElement = document.querySelector('.login-tab[data-tab="login"]');
+            showPanel(loginFormPanel, loginTabElement); // Switch to login tab
+        });
+    }
+    
+  });
+  </script>
+</body>
+</html>
